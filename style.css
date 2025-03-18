@@ -87,7 +87,7 @@ header {
 }
 @media (max-width: 600px) {
   .question-image img {
-    width: 85%;
+    width: 50%;
     height: auto;
   }
 }
