@@ -547,6 +547,7 @@ function updateShareLink() {
   shareBtn.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&openExternalBrowser=1";
 }
 
+
 // エンターキーで解答送信
 document.getElementById("answer").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {

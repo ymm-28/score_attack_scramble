@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- viewport設定：最大拡大率を1にし、ズームを防止 -->
+  <!-- スマホでの拡大防止 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>クイズサイト</title>
+  <title>スコアタランブル</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,14 +14,14 @@
   </header>
 
   <main>
-    <!-- 問題一覧：JSで30問分のサムネイル画像を生成 -->
+    <!-- 問題一覧（JSで30問分のサムネイル画像を生成） -->
     <div id="question-list" class="grid-container">
-      <!-- 各問題はJSで data-id 属性付きのdivとして生成 -->
+      <!-- 各問題はJS内で data-id 属性付きの div として生成 -->
     </div>
 
     <!-- 問題詳細画面（初期状態は非表示） -->
     <div id="question-detail" class="hidden">
-      <!-- 上部：文字ボタン（複数選択可能、組み合わせでキーとして判定） -->
+      <!-- 上部：文字ボタン -->
       <div class="question-header">
         <button class="letter-btn" data-letter="あ">あ</button>
         <button class="letter-btn" data-letter="い">い</button>
@@ -50,7 +50,7 @@
         <button id="submit-answer">解答送信</button>
       </div>
 
-      <!-- 詳細画面の「閉じる」ボタンを「一覧へ戻る」に変更 -->
+      <!-- 詳細画面の戻るボタン -->
       <button id="close-question">一覧へ戻る</button>
     </div>
 

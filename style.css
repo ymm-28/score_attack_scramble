@@ -17,7 +17,7 @@ header {
 }
 
 /* 問題一覧グリッド */
-/* スマホでは横3列、PCでは横6列 */
+/* スマホ：横3列、PC：横6列 */
 .grid-container {
   display: grid;
   gap: 10px;
@@ -52,7 +52,7 @@ header {
   display: none;
 }
 
-/* 非表示クラス */
+/* 非表示 */
 .hidden {
   display: none;
 }
@@ -69,14 +69,14 @@ header {
 }
 .question-header button {
   margin: 5px;
-  padding: 9px 12px;
-  font-size: 0.9em;
+  padding: 10px 15px;
+  font-size: 1em;
   cursor: pointer;
   border: none;
   background-color: #f0f0f0;
 }
 .question-header button.active {
-  background-color: #add8e6;  /* 水色 */
+  background-color: #add8e6; /* 水色 */
 }
 
 /* 詳細画像 */
@@ -152,10 +152,10 @@ header {
   }
 }
 
-/* 共有ボタン（問題一覧画面のみ表示） */
+/* 共有ボタン（問題一覧のみ表示） */
 #share-container {
   text-align: center;
-  margin: 20px 0 50px;  /* 下部余白を広く */
+  margin: 20px 0 50px;  /* 下部余白を広めに */
 }
 #share-btn {
   display: inline-block;
@@ -167,11 +167,11 @@ header {
   font-size: 1em;
 }
 
-/* スマートフォン向けの追加調整 */
+/* スマートフォン向け調整 */
 @media (max-width: 600px) {
-  /* 文字ボタンのサイズをやや小さく */
+  /* 文字ボタン：やや大きめに */
   .question-header button {
-    padding: 6px 8px;
-    font-size: 0.8em;
+    padding: 12px 16px;
+    font-size: 1.1em;
   }
 }
