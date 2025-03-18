@@ -2,13 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- viewport 設定でスマホでの拡大を防止 -->
+  <!-- viewport設定：最大拡大率を1にし、ズームを防止 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>クイズサイト</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ページ上部：獲得ポイント表示（大きく太字、pt 表記） -->
+  <!-- ページ上部：獲得ポイント表示 -->
   <header>
     <div id="points-display">獲得ポイント: <span id="points">0pt</span></div>
   </header>
@@ -16,7 +16,7 @@
   <main>
     <!-- 問題一覧：JSで30問分のサムネイル画像を生成 -->
     <div id="question-list" class="grid-container">
-      <!-- 各問題はJS内で data-id 属性付きの div として生成 -->
+      <!-- 各問題はJSで data-id 属性付きのdivとして生成 -->
     </div>
 
     <!-- 問題詳細画面（初期状態は非表示） -->
@@ -34,7 +34,7 @@
         <button class="letter-btn" data-letter="ー">ー</button>
       </div>
 
-      <!-- 詳細画像表示（パソコンでは横幅50%、スマホでは80～90%） -->
+      <!-- 詳細画像表示 -->
       <div class="question-image">
         <img src="" alt="問題画像" id="detail-image">
       </div>
@@ -50,13 +50,13 @@
         <button id="submit-answer">解答送信</button>
       </div>
 
-      <!-- 問題詳細を閉じるボタン -->
-      <button id="close-question">閉じる</button>
+      <!-- 詳細画面の「閉じる」ボタンを「一覧へ戻る」に変更 -->
+      <button id="close-question">一覧へ戻る</button>
     </div>
 
-    <!-- 共有ボタン（問題一覧にのみ表示） -->
+    <!-- 共有ボタン（問題一覧画面のみ表示） -->
     <div id="share-container">
-      <a id="share-btn" href="https://twitter.com/intent/tweet?text=Web謎版%20SCORE!%20ATTACK!%20SCRAMBLE!!%20で0ptを獲得した！%0Ahttps://ymm-28.github.io/score_attack_scramble/index.html%0A%0A%23スコアタランブル&openExternalBrowser=1" target="_blank">
+      <a id="share-btn" href="https://twitter.com/intent/tweet" target="_blank">
         Share on X
       </a>
     </div>

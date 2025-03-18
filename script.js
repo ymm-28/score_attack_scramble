@@ -544,7 +544,6 @@ function setsEqual(setA, setB) {
 function updateShareLink() {
   const shareBtn = document.getElementById("share-btn");
   const tweetText = "Web謎版 SCORE! ATTACK! SCRAMBLE!! で" + totalPoints + "ptを獲得した！\nhttps://ymm-28.github.io/score_attack_scramble/index.html\n\n#スコアタランブル";
-  // 末尾のパラメータを "&openExternalBrowser=1" に変更
   shareBtn.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&openExternalBrowser=1";
 }
 
