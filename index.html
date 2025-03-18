@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- スマホでの拡大防止 -->
+  <!-- スマホでの拡大を防止 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>スコアタランブル</title>
   <link rel="stylesheet" href="style.css">
@@ -13,8 +13,15 @@
     <div id="points-display">獲得ポイント: <span id="points">0pt</span></div>
   </header>
 
+  <!-- 遊び方＆解答解説リンク（獲得ポイント下、問題一覧上） -->
+  <div id="instruction">
+    遊び方&解答解説は
+    <a href="https://note.com/hibiki_28/n/nd23c2376dab7" target="_blank">こちら</a>
+    から！
+  </div>
+
   <main>
-    <!-- 問題一覧（JSで30問分のサムネイル画像を生成） -->
+    <!-- 問題一覧：JSで30問分のサムネイル画像を生成 -->
     <div id="question-list" class="grid-container">
       <!-- 各問題はJS内で data-id 属性付きの div として生成 -->
     </div>
@@ -56,7 +63,9 @@
 
     <!-- 共有ボタン（問題一覧画面のみ表示） -->
     <div id="share-container">
-      <a id="share-btn" href="https://twitter.com/intent/tweet" target="_blank">
+      <a id="share-btn" 
+         href="https://twitter.com/intent/tweet?text=Web謎版%20SCORE!%20ATTACK!%20SCRAMBLE!!%20で---ptを獲得した！%0Ahttps://ymm-28.github.io/score_attack_scramble/index.html%0A%0A%23スコアタランブル&openExternalBrowser=1" 
+         target="_blank">
         Share on X
       </a>
     </div>

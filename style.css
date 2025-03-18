@@ -16,6 +16,17 @@ header {
   font-weight: bold;
 }
 
+/* 遊び方＆解答解説の案内 */
+#instruction {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+#instruction a {
+  color: blue;
+  text-decoration: underline;
+}
+
 /* 問題一覧グリッド */
 /* スマホ：横3列、PC：横6列 */
 .grid-container {
@@ -52,7 +63,7 @@ header {
   display: none;
 }
 
-/* 非表示 */
+/* 非表示クラス */
 .hidden {
   display: none;
 }
@@ -80,14 +91,14 @@ header {
 }
 
 /* 詳細画像 */
-/* PC: 横幅50%、スマホ: 横幅80%～90%（ここでは80%に設定） */
+/* PC: 横幅50%、スマホ: 横幅80%に設定 */
 .question-image {
   text-align: center;
   margin-bottom: 10px;
 }
 @media (max-width: 600px) {
   .question-image img {
-    width: 80%;
+    width: 90%;
     height: auto;
   }
 }
@@ -145,7 +156,7 @@ header {
   font-size: 1em;
 }
 @media (max-width: 600px) {
-  /* スマホでは「一覧へ戻る」ボタンを大きく */
+  /* スマホでは「一覧へ戻る」ボタンをやや大きく */
   #close-question {
     padding: 20px 30px;
     font-size: 1.2em;
@@ -155,7 +166,7 @@ header {
 /* 共有ボタン（問題一覧のみ表示） */
 #share-container {
   text-align: center;
-  margin: 20px 0 50px;  /* 下部余白を広めに */
+  margin: 20px 0 50px; /* 下部余白を広め */
 }
 #share-btn {
   display: inline-block;
@@ -167,9 +178,8 @@ header {
   font-size: 1em;
 }
 
-/* スマートフォン向け調整 */
+/* スマートフォン向け調整：文字ボタンをやや大きく */
 @media (max-width: 600px) {
-  /* 文字ボタン：やや大きめに */
   .question-header button {
     padding: 12px 16px;
     font-size: 1.1em;

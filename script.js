@@ -1,5 +1,7 @@
+// -------------------------
 // 1. 問題データ・状態の登録
-// ※内部的には問題番号 1～30 を id 0～29 として扱います。
+// ※内部的には問題番号1～30を id 0～29 として扱います。
+// ※ここでは例として問題5、7、9、および問題26のデータを一部記載（実際は全30問分を定義してください）。
 
 function getPoints(qIndex) {
   if (qIndex < 15) return 10;
@@ -387,11 +389,12 @@ questionsData.push({
   thumb: "nazo26.png",
   detailImage: "nazo26.png",
   answers: {
-    "つ,わ": [{ text: "じゅうに", mark: 0 }],
-    "つ,わ": [{ text: "じゅうにがつ", mark: 0 }],
-    "つ,わ": [{ text: "12", mark: 0 }],
-    "つ,わ": [{ text: "12月", mark: 0 }],
-    "つ": [{ text: "あ", mark: 1 }]
+    "つ,わ": [
+      { text: "じゅうに", mark: 0 },
+      { text: "じゅうにがつ", mark: 0 },
+      { text: "12", mark: 0 },
+      { text: "12月", mark: 0 }
+    ]
   },
   totalMarks: 1,
   markLabels: ["２"],
@@ -451,12 +454,24 @@ questionsData.push({
   points: getPoints(29)
 });
 
-// 各問題の解答状態（各マークごとに true/false）
-const questionStates = {};
-questionsData.forEach(q => {
-  questionStates[q.id] = { solved: Array(q.totalMarks).fill(false) };
-});
 
+// スコア・解答状態の永続化
+let totalPoints = parseInt(localStorage.getItem("totalPoints")) || 0;
+const storedStates = localStorage.getItem("questionStates");
+let questionStates = {};
+if (storedStates) {
+  questionStates = JSON.parse(storedStates);
+} else {
+  questionsData.forEach(q => {
+    questionStates[q.id] = { solved: Array(q.totalMarks).fill(false) };
+  });
+}
+
+// 初期スコア表示更新
+const pointsDisplay = document.getElementById("points");
+pointsDisplay.textContent = totalPoints + "pt";
+
+// -------------------------
 // 2. 問題一覧の生成（画像埋め込み）
 const questionListElem = document.getElementById("question-list");
 questionsData.forEach(q => {
@@ -479,15 +494,12 @@ questionsData.forEach(q => {
   item.addEventListener("click", () => openQuestionDetail(q.id));
 });
 
+// -------------------------
 // 3. 詳細画面の処理
 let currentQuestion = null;
 let currentQuestionId = null;
-let totalPoints = 0;
-const pointsDisplay = document.getElementById("points");
 
-// 文字ボタン：クリックで active 状態の切替
 const letterButtons = Array.from(document.querySelectorAll(".letter-btn"));
-// ユーザーが押した文字（順序は保持するが、判定は【集合】として比較）
 let activeSequence = [];
 letterButtons.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -505,33 +517,34 @@ letterButtons.forEach(btn => {
 function openQuestionDetail(qid) {
   currentQuestion = questionsData.find(q => q.id == qid);
   currentQuestionId = qid;
+
+　document.getElementById("instruction").style.display = "none";
   
   document.getElementById("detail-image").src = currentQuestion.detailImage;
   document.getElementById("answer").value = "";
   
-  // 文字ボタンリセット
   letterButtons.forEach(btn => btn.classList.remove("active"));
   activeSequence = [];
   
-  // 解答マーク生成（各マークのラベルを currentQuestion.markLabels から）
   const marksContainer = document.querySelector(".answer-marks");
   marksContainer.innerHTML = "";
   for (let i = 0; i < currentQuestion.totalMarks; i++) {
     const mark = document.createElement("div");
     mark.classList.add("mark");
-    mark.textContent = currentQuestion.markLabels[i] || (i+1);
-    if (questionStates[currentQuestion.id].solved[i]) {
+    mark.textContent = currentQuestion.markLabels[i] || (i + 1);
+    if (questionStates[currentQuestion.id] && questionStates[currentQuestion.id].solved[i]) {
       mark.classList.add("solved");
     }
     marksContainer.appendChild(mark);
   }
   
-  // 詳細画面表示時は共有ボタンを非表示にする
+  // 詳細画面では共有ボタンを非表示
   document.getElementById("share-container").style.display = "none";
   document.getElementById("question-detail").classList.remove("hidden");
   document.getElementById("question-list").classList.add("hidden");
 }
 
+// -------------------------
 // ヘルパー：集合の等価判定（順序無視）
 function setsEqual(setA, setB) {
   if (setA.size !== setB.size) return false;
@@ -541,13 +554,7 @@ function setsEqual(setA, setB) {
   return true;
 }
 
-// 共有ボタンリンク更新関数
-function updateShareLink() {
-  const shareBtn = document.getElementById("share-btn");
-  const tweetText = "Web謎版 SCORE! ATTACK! SCRAMBLE!! で" + totalPoints + "ptを獲得した！\nhttps://ymm-28.github.io/score_attack_scramble/index.html\n\n#スコアタランブル";
-  shareBtn.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&openExternalBrowser=1";
-}
-
+// ※今回、Share on X のリンクは固定（HTML内に組み込んでいるため、JSで更新しません）
 
 // エンターキーで解答送信
 document.getElementById("answer").addEventListener("keydown", (e) => {
@@ -556,17 +563,13 @@ document.getElementById("answer").addEventListener("keydown", (e) => {
   }
 });
 
-
-
-
+// -------------------------
 // 4. 回答送信時の処理
 document.getElementById("submit-answer").addEventListener("click", () => {
   const userAnswer = document.getElementById("answer").value.trim();
   
-  // ユーザーが押したボタンの集合
   const pressedSet = new Set(activeSequence);
   
-  // 各 mapping のキー（カンマ区切り）も集合にして比較
   let foundMapping = null;
   for (let key in currentQuestion.answers) {
     const keySet = new Set(key === "" ? [] : key.split(","));
@@ -575,7 +578,6 @@ document.getElementById("submit-answer").addEventListener("click", () => {
       break;
     }
   }
-  // 見つからなければ、デフォルト（空文字）の候補を採用
   if (!foundMapping && currentQuestion.answers[""]) {
     foundMapping = currentQuestion.answers[""];
   }
@@ -584,23 +586,22 @@ document.getElementById("submit-answer").addEventListener("click", () => {
     return;
   }
   
-  // foundMapping は配列（複数候補があればそれぞれ独立に判定）
-  // いずれかの候補と userAnswer が一致すれば正解とする
   let correctMapping = foundMapping.find(mapping => mapping.text === userAnswer);
   if (correctMapping) {
     const markIndex = correctMapping.mark;
     if (!questionStates[currentQuestion.id].solved[markIndex]) {
       alert("正解！");
       totalPoints += currentQuestion.points;
-      pointsDisplay.textContent = totalPoints;
+      pointsDisplay.textContent = totalPoints + "pt";
+      localStorage.setItem("totalPoints", totalPoints);
       questionStates[currentQuestion.id].solved[markIndex] = true;
-
+      localStorage.setItem("questionStates", JSON.stringify(questionStates));
+      
       // 正解時のみ：解答欄と文字ボタンをリセット
       document.getElementById("answer").value = "";
       letterButtons.forEach(btn => btn.classList.remove("active"));
       activeSequence = [];
       
-      // 解答マーク更新
       const marksContainer = document.querySelector(".answer-marks");
       Array.from(marksContainer.children).forEach((markElem, index) => {
         if (questionStates[currentQuestion.id].solved[index]) {
@@ -608,7 +609,6 @@ document.getElementById("submit-answer").addEventListener("click", () => {
         }
       });
       
-      // すべてのマークが解答済みなら、一覧に "CLEAR!" を表示
       if (questionStates[currentQuestion.id].solved.every(val => val)) {
         const questionItems = document.querySelectorAll(".question-item");
         questionItems.forEach(item => {
@@ -626,10 +626,10 @@ document.getElementById("submit-answer").addEventListener("click", () => {
 });
 
 // -------------------------
-// 5. 詳細画面を閉じる（状態保持）
+// 5. 詳細画面を閉じる
 document.getElementById("close-question").addEventListener("click", () => {
   document.getElementById("question-detail").classList.add("hidden");
   document.getElementById("question-list").classList.remove("hidden");
-  // 問題一覧画面では共有ボタンを表示
   document.getElementById("share-container").style.display = "block";
+　document.getElementById("instruction").style.display = "block";
 });
