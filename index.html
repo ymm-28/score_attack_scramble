@@ -2,11 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <!-- viewport 設定でスマホでの拡大を防止 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>クイズサイト</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ページ上部：獲得ポイント表示 -->
+  <!-- ページ上部：獲得ポイント表示（大きく太字、pt 表記） -->
   <header>
     <div id="points-display">獲得ポイント: <span id="points">0pt</span></div>
   </header>
@@ -32,7 +34,7 @@
         <button class="letter-btn" data-letter="ー">ー</button>
       </div>
 
-      <!-- 詳細画像表示（パソコンでは画面横幅の50%程度） -->
+      <!-- 詳細画像表示（パソコンでは横幅50%、スマホでは80～90%） -->
       <div class="question-image">
         <img src="" alt="問題画像" id="detail-image">
       </div>
@@ -52,9 +54,9 @@
       <button id="close-question">閉じる</button>
     </div>
 
-    <!-- 共有ボタン（ページ下部） -->
+    <!-- 共有ボタン（問題一覧にのみ表示） -->
     <div id="share-container">
-      <a id="share-btn" href="https://twitter.com/intent/tweet?text=Web謎版%20SCORE!%20ATTACK!%20SCRAMBLE!!%20で0ptを獲得した！　%23スコアタランブル&openExternalBrowser=1" target="_blank">
+      <a id="share-btn" href="https://twitter.com/intent/tweet?text=Web謎版%20SCORE!%20ATTACK!%20SCRAMBLE!!%20で0ptを獲得した！%0Ahttps://ymm-28.github.io/score_attack_scramble/index.html%0A%0A%23スコアタランブル&openExternalBrowser=1" target="_blank">
         Share on X
       </a>
     </div>

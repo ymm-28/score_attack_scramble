@@ -16,7 +16,8 @@ header {
   font-weight: bold;
 }
 
-/* 問題一覧グリッド：スマホは横3列、PCは横6列 */
+/* 問題一覧グリッド */
+/* スマホでは横3列、PCでは横6列 */
 .grid-container {
   display: grid;
   gap: 10px;
@@ -60,6 +61,8 @@ header {
 #question-detail {
   padding: 20px;
 }
+
+/* 文字ボタン */
 .question-header {
   text-align: center;
   margin-bottom: 10px;
@@ -77,9 +80,16 @@ header {
 }
 
 /* 詳細画像 */
+/* PC: 横幅50%、スマホ: 横幅80%～90% */
 .question-image {
   text-align: center;
   margin-bottom: 10px;
+}
+@media (max-width: 600px) {
+  .question-image img {
+    width: 85%;
+    height: auto;
+  }
 }
 @media (min-width: 601px) {
   .question-image img {
@@ -106,7 +116,7 @@ header {
   font-weight: bold;
 }
 .mark.solved {
-  background-color: green; /* 緑色に変更 */
+  background-color: green; /* 緑色 */
   color: #fff;
 }
 
@@ -134,7 +144,7 @@ header {
   cursor: pointer;
 }
 
-/* 共有ボタン */
+/* 共有ボタン（問題一覧のみ表示） */
 #share-container {
   text-align: center;
   margin: 20px 0;
@@ -147,4 +157,15 @@ header {
   text-decoration: none;
   border-radius: 5px;
   font-size: 1em;
+}
+
+/* スマホ向け：ボタンを大きくし押しやすく */
+@media (max-width: 600px) {
+  .question-header button {
+    padding: 15px 20px;
+    font-size: 1.2em;
+  }
+  .answer-input input {
+    font-size: 1.2em;
+  }
 }

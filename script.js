@@ -525,6 +525,8 @@ function openQuestionDetail(qid) {
     marksContainer.appendChild(mark);
   }
   
+  // 詳細画面表示時は共有ボタンを非表示にする
+  document.getElementById("share-container").style.display = "none";
   document.getElementById("question-detail").classList.remove("hidden");
   document.getElementById("question-list").classList.add("hidden");
 }
@@ -541,8 +543,9 @@ function setsEqual(setA, setB) {
 // 共有ボタンリンク更新関数
 function updateShareLink() {
   const shareBtn = document.getElementById("share-btn");
-  const tweetText = "Web謎版 SCORE! ATTACK! SCRAMBLE!! で" + totalPoints + "ptを獲得した！　#スコアタランブル";
-  shareBtn.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+  const tweetText = "Web謎版 SCORE! ATTACK! SCRAMBLE!! で" + totalPoints + "ptを獲得した！\nhttps://ymm-28.github.io/score_attack_scramble/index.html\n\n#スコアタランブル";
+  // 末尾のパラメータを "&openExternalBrowser=1" に変更
+  shareBtn.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText) + "&openExternalBrowser=1";
 }
 
 // エンターキーで解答送信
@@ -621,8 +624,11 @@ document.getElementById("submit-answer").addEventListener("click", () => {
   }
 });
 
+// -------------------------
 // 5. 詳細画面を閉じる（状態保持）
 document.getElementById("close-question").addEventListener("click", () => {
   document.getElementById("question-detail").classList.add("hidden");
   document.getElementById("question-list").classList.remove("hidden");
+  // 問題一覧画面では共有ボタンを表示
+  document.getElementById("share-container").style.display = "block";
 });
