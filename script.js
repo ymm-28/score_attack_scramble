@@ -390,7 +390,8 @@ questionsData.push({
     "つ,わ": [{ text: "じゅうに", mark: 0 }],
     "つ,わ": [{ text: "じゅうにがつ", mark: 0 }],
     "つ,わ": [{ text: "12", mark: 0 }],
-    "つ,わ": [{ text: "12月", mark: 0 }]
+    "つ,わ": [{ text: "12月", mark: 0 }],
+    "つ": [{ text: "あ", mark: 1 }]
   },
   totalMarks: 1,
   markLabels: ["２"],
