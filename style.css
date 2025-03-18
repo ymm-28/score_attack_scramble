@@ -65,7 +65,7 @@ header {
 /* 文字ボタン */
 .question-header {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 .question-header button {
   margin: 5px;
@@ -152,7 +152,7 @@ header {
 #share-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #1da1f2;
+  background-color: #000;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
