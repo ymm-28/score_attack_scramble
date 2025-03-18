@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズサイト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ページ上部：獲得ポイント表示 -->
+  <header>
+    <div id="points-display">獲得ポイント: <span id="points">0pt</span></div>
+  </header>
+
+  <main>
+    <!-- 問題一覧：JSで30問分のサムネイル画像を生成 -->
+    <div id="question-list" class="grid-container">
+      <!-- 各問題はJS内で data-id 属性付きの div として生成 -->
+    </div>
+
+    <!-- 問題詳細画面（初期状態は非表示） -->
+    <div id="question-detail" class="hidden">
+      <!-- 上部：文字ボタン（複数選択可能、組み合わせでキーとして判定） -->
+      <div class="question-header">
+        <button class="letter-btn" data-letter="あ">あ</button>
+        <button class="letter-btn" data-letter="い">い</button>
+        <button class="letter-btn" data-letter="ち">ち</button>
+        <button class="letter-btn" data-letter="つ">つ</button>
+        <button class="letter-btn" data-letter="と">と</button>
+        <button class="letter-btn" data-letter="み">み</button>
+        <button class="letter-btn" data-letter="わ">わ</button>
+        <button class="letter-btn" data-letter="◯">◯</button>
+        <button class="letter-btn" data-letter="ー">ー</button>
+      </div>
+
+      <!-- 詳細画像表示（パソコンでは画面横幅の50%程度） -->
+      <div class="question-image">
+        <img src="" alt="問題画像" id="detail-image">
+      </div>
+
+      <!-- 解答マーク表示エリア -->
+      <div class="answer-marks">
+        <!-- JSで currentQuestion.markLabels の数だけ生成 -->
+      </div>
+
+      <!-- 解答入力欄 -->
+      <div class="answer-input">
+        <input type="text" id="answer" placeholder="解答を入力">
+        <button id="submit-answer">解答送信</button>
+      </div>
+
+      <!-- 問題詳細を閉じるボタン -->
+      <button id="close-question">閉じる</button>
+    </div>
+
+    <!-- 共有ボタン（ページ下部） -->
+    <div id="share-container">
+      <a id="share-btn" href="https://twitter.com/intent/tweet?text=Web謎版%20SCORE!%20ATTACK!%20SCRAMBLE!!%20で0ptを獲得した！　%23スコアタランブル&openExternalBrowser=1" target="_blank">
+        Share on X
+      </a>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
