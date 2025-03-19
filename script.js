@@ -486,6 +486,11 @@ questionsData.forEach(q => {
   const clearIndicator = document.createElement("div");
   clearIndicator.classList.add("clear-indicator");
   clearIndicator.textContent = "CLEAR!";
+  if (questionStates[q.id] && questionStates[q.id].solved.every(val => val)) {
+    clearIndicator.style.display = "block";
+  } else {
+    clearIndicator.style.display = "none";
+  }
   
   item.appendChild(img);
   item.appendChild(clearIndicator);
